@@ -4,9 +4,20 @@ jsp팀프로젝트
 
 # 필독
 
+git clone 하고 프로젝트 연후에 team_website 폴더 안보이시면 
+
+1. 상단 메뉴에서 File → Import
+2. General → Existing Projects into Workspace 선택
+3. Next 클릭
+4. Select root directory에서 클론한 저장소 안의 team_project 폴더 선택
+
+
 카카오지도 api키나 DB 사용자 이름, 패스워드는 config.jsp로 관리하고 있습니다. <br>
 "JSP_Team3_Project\team_project\src\main\webapp\config.jsp" 해당경로에 config.jsp파일을 직접 넣어야 지도 api와 db연동이 정상적으로 작동합니다.<br>
 해당 파일 추가 안되도록 .gitignore 설정했습니다만 api키는 git에 올리시면 안됩니다.<br>
+
+서버는 tomcat 10.1이고 따로 설정 하셔야 합니다. 
+
 추가로 DB설정시 유저 권한은 GRANT CONNECT, RESOURCE, DBA, CREATE SESSION, CREATE TABLE TO "사용자 이름"; 으로 했습니다.<br>
 
 
@@ -28,7 +39,7 @@ jsp팀프로젝트
 
 #
 카카오 지도api는 https://apis.map.kakao.com/web/ 해당 사이트 참고해 작성했습니다.<br>
-사진 부분은 오픈라이브러리 cos.jar를 이용해서 작성했습니다. jsp교재에 파일업로드 부분 참고 하시면 됩니다.
+사진 부분은 오픈라이브러리 cos.jar를 이용해서 작성했습니다, jsp교재에 파일업로드 부분 참고 하시면 됩니다.
 스타일 서식은 src/main/webapp/stylefile 파일에 .css파일로 따로 관리하고 있습니다.
 
 ---
@@ -36,6 +47,8 @@ jsp팀프로젝트
 main.jsp는 시작 화면이고 현재 접수된 신고를 보여주는파일입니다.<br>
 write.jsp는 신고 게시물 작성 화면으로 지도를 클릭해 위도 경도를 받아옵니다.<br>
 list.jsp는 신고 게시판으로 write.jsp에서 작성된 신고를 볼수 있습니다.<br>
+
+---
 
 현재 main.jsp와 write.jsp,write_process.jsp부분은 거의 구현했습니다만 추후 기능 변화가 있으면 수정이 필요할거 같습니다.<br>
 list.jsp는 아직 구현 안했습니다.
