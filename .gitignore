@@ -1,0 +1,26 @@
+# Eclipse 개인 작업공간
+.metadata/
+
+# Tomcat 서버 및 임시 파일
+Servers/
+tmp/
+wtpwebapps/
+work/
+
+# Java 컴파일 결과
+bin/
+build/
+*.class
+
+# 업로드 이미지
+write_image_uploadfile/*
+!write_image_uploadfile/.gitkeep
+
+# 로그 및 OS
+*.log
+.DS_Store
+Thumbs.db
+
+# 개인 설정 config.jsp에 api키관리하고있음 "JSP_Team3_Project\team_project\src\main\webapp\config.jsp"해당 경로로 추가해줘야함.
+config.jsp
+.env

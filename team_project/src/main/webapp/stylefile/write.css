@@ -1,0 +1,57 @@
+@charset "UTF-8";
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    .page-wrapper { display: flex; flex-direction: column; width: 100vw; height: 100vh; }
+
+    /* 레이아웃: 좌측 폼, 우측 지도 위치 선택 */
+    .container { display: flex; flex: 1; height: calc(100vh - 60px); }
+    
+    .form-area { width: 450px; padding: 25px; overflow-y: auto; background: #fdfdfd; border-right: 1px solid #ddd; }
+    .form-area h2 { margin-bottom: 20px; color: #2c3e50; }
+    
+    .form-group { margin-bottom: 15px; } /**/
+    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #333; }
+    .form-group input[type="text"], 
+    .form-group select, 
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    .form-group textarea { height: 120px; resize: vertical; }
+    
+    /* 위치 좌표 표시 인풋 (수정 불가 고정) */
+    .latlng-box { display: flex; gap: 10px; }
+    .latlng-box input { background-color: #f0f0f0; }
+
+    .btn-submit {
+        width: 100%;
+        padding: 12px;
+        background-color: #27ae60;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .btn-submit:hover { background-color: #219150; }
+	
+	/*지도부분*/
+    .map-area { flex: 1; height: 100%; position: relative; }
+    .map-guide {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        z-index: 10;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 15px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        font-size: 13px;
+        font-weight: bold;
+        color: #e74c3c;
+    }
