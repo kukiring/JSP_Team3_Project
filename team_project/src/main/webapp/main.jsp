@@ -12,7 +12,7 @@
     // 신고 목록을 Report 객체로 관리
     List<Report> r_List = new ArrayList<>();
 
-    String sql = "SELECT id,title,name,content,latitude,longitude,status FROM jsp_db ORDER BY id DESC";
+    String sql = "SELECT id,title,name,content,latitude,longitude,status FROM jsp_report_db ORDER BY id DESC";
 
     try {
         Class.forName("oracle.jdbc.driver.OracleDriver");

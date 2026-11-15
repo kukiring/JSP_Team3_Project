@@ -149,7 +149,7 @@
     //필요시 수정.
     // DB구성
     String sql =
-    "INSERT INTO JSP_DB (title, name, waste_type, latitude, longitude, content, image_file) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    "INSERT INTO jsp_report_db (title, name, waste_type, latitude, longitude, content, image_file) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 
     try
@@ -186,5 +186,7 @@
     }
 	//아직 리스트 부분 구현안되어 있어 주석처리함.
     //response.sendRedirect(request.getContextPath() + "/list.jsp");
-
+		
 %>
+	<p>현재 list.jsp를 작성 안해서 write_process.jsp에서 멈춘게 정상입니다. 오라클에서 select 해보고 데이터 저장되었는지 확인해주세요.
+	<p>list.jsp는 구현 안되어있지만 main엔 신고 내역이 올라올겁니다.
