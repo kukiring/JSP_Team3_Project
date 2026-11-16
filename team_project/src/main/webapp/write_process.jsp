@@ -15,7 +15,7 @@
 
     // 사진 파일 저장 코드
 
-    //파일 저장 경로 설정 c드라이버에 파일 생성후 저장.
+    //파일 저장 경로 설정 c드라이버에 파일 생성후 저장. // 
    String uploadPath = "C:/write_image_uploadfile/";
 
     //위 경로로 파일 경로 설정
@@ -55,7 +55,7 @@
             new DefaultFileRenamePolicy() // 동일한 이름의 파일이 있으면 뒤에 번호를 붙여 충돌방지
         );
         위 코드랑 똑같습니다.*/
-
+        //사진 저장하는 부분
         MultipartRequest multi = new MultipartRequest
         (
             request,
@@ -73,7 +73,7 @@
         longitude = multi.getParameter("longitude");
         content = multi.getParameter("content");
 
-        // 필수 데이터 검증 널값이면 원래 페이지로 돌아가도록 설정.
+        // 필수 데이터 검증 널값이거나 값이 없으면 원래 페이지로 돌아가도록 설정.
         if
         (
             name == null || name.trim().isEmpty() ||
@@ -92,15 +92,17 @@
             return;
         }
 
-     // 업로드된 파일 이름들 수집
+     // 업로드된 파일 이름들 수집 
+     // //DB에 저장하기 위해 이름수집함.  "123.jpg,456.jpg,789.jpg" 형태로 저장 됨.
         List<String> savedFileNames = new ArrayList<String>();
-
+        // 에물레이션 객체 생성, getFileNames(); = input type="file"에서 전송된 input태그에 name를 반환
         Enumeration<?> files = multi.getFileNames();
-
-        while (files.hasMoreElements())
+        
+        while (files.hasMoreElements()) //  Form에서 전송된 모든 <input type="file"> 요소들의 이름을 순회하기 위한 반복문입니다.
         {
+            //현재 순서에 해당하는 input태그에 name에 속성값 가져옴
             String fileParamName = (String) files.nextElement();
-
+            //위에 name에 값으로 실제 저장된 파일에 이름 가져옴.
             String savedFileName = multi.getFilesystemName(fileParamName);
 
             // 파일을 선택하지 않았다면 null이므로 저장하지 않음
@@ -111,7 +113,7 @@
             
         }
 
-        // 사진이 없으면 빈 문자열 저장
+        // 사진이 없으면 빈 문자열 저장 //imageFilesStr에 내용이 db에 저장됨.
         imageFilesStr = String.join(",", savedFileNames);
 
         /* 위 코드 for문으로 구현했는데 join써서 구현함.

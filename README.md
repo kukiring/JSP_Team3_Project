@@ -39,7 +39,7 @@ git clone 하고 프로젝트 연후에 team_website 폴더 안보이시면
 
 #
 카카오 지도api는 https://apis.map.kakao.com/web/ 해당 사이트 참고해 작성했습니다.<br>
-사진 부분은 오픈라이브러리 cos.jar를 이용해서 작성했습니다, jsp교재에 파일업로드 부분 참고 하시면 됩니다.
+사진업로드를 위한  파일 입출력 부분은 오픈라이브러리 cos.jar를 이용해서 작성했습니다, jsp교재에 파일업로드 부분 참고 하시면 됩니다.
 스타일 서식은 src/main/webapp/stylefile 파일에 .css파일로 따로 관리하고 있습니다.
 
 ---

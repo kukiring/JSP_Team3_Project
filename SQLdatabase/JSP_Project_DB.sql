@@ -6,7 +6,8 @@ CREATE TABLE jsp_report_db (
     latitude    VARCHAR2(50) NOT NULL,              -- 위도
     longitude   VARCHAR2(50) NOT NULL,              -- 경도
     content     CLOB,                               -- 대용량 파일 저장 데이터 유형
-    image_file  VARCHAR2(1000),                     -- 여러 사진 파일명 (콤마 구분) 
+    image_file  VARCHAR2(1000),                     -- 여러 사진 파일명 (콤마 구분)
+                                                    -- "123.jpg,456.jpg,789.jpg" 형태로 저장 됨. 추후 게시판 구현할때는 ,단위로 파일 구분하여 출력함.
     status VARCHAR2(30) DEFAULT '접수',              -- 현재 접수상태. -접수, 해결완료로 구분
     reg_date    DATE DEFAULT SYSDATE                -- 작성 시간 자동 생성
 );

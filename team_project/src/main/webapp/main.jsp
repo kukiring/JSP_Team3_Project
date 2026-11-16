@@ -11,12 +11,12 @@
 
     // 신고 목록을 Report 객체로 관리
     List<Report> r_List = new ArrayList<>();
-
+    //sql문 id를 기준으로 내림차순
     String sql = "SELECT id,title,name,content,latitude,longitude,status FROM jsp_report_db ORDER BY id DESC";
 
     try {
         Class.forName("oracle.jdbc.driver.OracleDriver");
-
+        
         try (Connection conn = DriverManager.getConnection(url, user, pw);
              PreparedStatement pstmt = conn.prepareStatement(sql);
              ResultSet rs = pstmt.executeQuery()) {
@@ -80,7 +80,7 @@
 
             <%
                 } else {
-
+                    <!-- 위쪽에서 불러온 r_List을 이용해 아래 div class = "report"에 저장-->
                     for (Report report : r_List) {
                         String title = report.getTitle();
                         String latitude = report.getLatitude();
@@ -138,29 +138,30 @@
     var bounds = new kakao.maps.LatLngBounds();
 
     // 신고 목록 가져오기 (변수명을 reportCards로 통일)
+    //위에 div clase = "report"에
+    //data-lat="<%= latitude %>",
+    //data-lng="<%= longitude %>",
+    //data-title="<%= title %>">를 reportCards에 저장함
+    //아래에서 forEach를 돌려 마커를 생성하기 위한 위도 경도 제목을 저장함.
     var reportCards = document.querySelectorAll('.report');
 
     reportCards.forEach(function(card) {
-
+        //reportCard에서 위도 경도 제목을 뽑아냄.
         var lat = Number(card.dataset.lat);
         var lng = Number(card.dataset.lng);
         var title = card.dataset.title;
 
-        // 좌표 유효성 검사 (선택 사항)
-        if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
-            return;
-        }
-
-        // 지도 좌표 생성
+        // 지도 좌표 생성 // 위도 경도를 저장
         var position = new kakao.maps.LatLng(lat, lng);
 
-        // 마커 생성
+        // 마커 생성 //위에 생성한 위도 경도를 바탕으로 마커생성
         var marker = new kakao.maps.Marker({
             position: position,
             map: map
         });
 
         // 마커 클릭 시 신고 제목 표시
+        // createElement div를 동적으로 생성합니다. 
         var infoContent = document.createElement('div');
         infoContent.style.padding = '8px 12px';
         infoContent.style.fontSize = '13px';
