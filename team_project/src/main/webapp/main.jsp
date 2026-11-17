@@ -80,7 +80,7 @@
 
             <%
                 } else {
-                    <!-- 위쪽에서 불러온 r_List을 이용해 아래 div class = "report"에 저장-->
+                    // 위쪽에서 불러온 r_List을 이용해 아래 div class = "report"에 저장
                     for (Report report : r_List) {
                         String title = report.getTitle();
                         String latitude = report.getLatitude();
@@ -136,12 +136,12 @@
 
     // 지도 범위 설정
     var bounds = new kakao.maps.LatLngBounds();
-
+	
     // 신고 목록 가져오기 (변수명을 reportCards로 통일)
     //위에 div clase = "report"에
-    //data-lat="<%= latitude %>",
-    //data-lng="<%= longitude %>",
-    //data-title="<%= title %>">를 reportCards에 저장함
+    //data-lat=" latitude,
+    //data-lng=" longitude",
+    //data-title=" title "를 reportCards에 저장함
     //아래에서 forEach를 돌려 마커를 생성하기 위한 위도 경도 제목을 저장함.
     var reportCards = document.querySelectorAll('.report');
 
