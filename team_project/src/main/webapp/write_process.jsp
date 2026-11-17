@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@ page import="com.oreilly.servlet.*" %>
@@ -101,7 +100,6 @@
             String savedFileName = multi.getFilesystemName(name);
             System.out.println(savedFileName);
             if (savedFileName != null) {
-                // 중복 방지 정책(DefaultFileRenamePolicy)이 적용된 최종 저장 파일명
                 savedFileNames.add(savedFileName);
             }
         }
@@ -118,7 +116,7 @@
 
         out.println("<script>");
         out.println("alert('파일 업로드에 실패했습니다.');");
-        out.println("location.href='" + request.getContextPath() + "/write.jsp';");
+        out.println("location.href='./write.jsp';");
         out.println("</script>");
         return;
     }
@@ -167,7 +165,6 @@
 
         // 리포트 테이블 INSERT (자동 생성된 PK를 가져오기 위해 ID 지정)
         String[] report_primaryk = {"report_id"};
-        
         pstmt_Report = conn.prepareStatement(report_sql, report_primaryk);
         
         pstmt_Report.setString(1, user_name);
