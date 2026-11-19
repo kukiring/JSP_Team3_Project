@@ -125,18 +125,18 @@
     double lat = Double.parseDouble(latitude);
     double lon = Double.parseDouble(longitude);
 
-    // 대한민국 기준 중심점 (세종시)
-    double centerLat = 36.5;
-    double centerLon = 127.5;
+    // 대한민국 기준 중심점 (속리산)
+    double centerLat = 36.543276;
+    double centerLon = 127.870740;
 
     int admin = 1;
 
     // 4분면 판별
     if (lat >= centerLat) {
         if (lon < centerLon) {
-        	admin = 1; // 1사분면 북서 (수도권)
+        	admin = 1; // 2사분면 북서 (수도권)
         } else {
-        	admin= 2; // 2사분면 북동 (강원도)
+        	admin= 2; // 1사분면 북동 (강원도)
         }
     } else {
         if (lon < centerLon) {
@@ -221,8 +221,8 @@
     }
 
 	//아직 리스트 부분 구현안되어 있어 주석처리함.
-    //response.sendRedirect(request.getContextPath() + "/list.jsp");
+    //response.sendRedirect(request.getContextPath() + "/report_board.jsp");
 		
 %>
 	<p>현재 list.jsp를 작성 안해서 write_process.jsp에서 멈춘게 정상입니다. 오라클에서 select 해보고 데이터 저장되었는지 확인해주세요.
-	<p>list.jsp는 구현 안되어있지만 main엔 신고 내역이 올라올겁니다.
+	<p>report_board.jsp는 구현 안되어있지만 home_page엔 신고 내역이 올라올겁니다.

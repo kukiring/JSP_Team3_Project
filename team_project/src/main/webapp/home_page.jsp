@@ -12,7 +12,7 @@
     // 신고 목록을 Report 객체로 관리
     List<Report> r_List = new ArrayList<>();
     //sql문 id를 기준으로 내림차순
-    String sql = "SELECT report_id,title,user_name,content,latitude,longitude,status FROM report ORDER BY id DESC";
+    String sql = "SELECT * FROM report ORDER BY report_id DESC";
 
     try {
         Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -25,15 +25,16 @@
 
                 // DB 데이터를 Report 객체로 변환
                 Report report = new Report(
-                    rs.getInt("id"),
+                    rs.getInt("report_id"),
                     rs.getString("title"),
-                    rs.getString("name"),
-                    rs.getString("content"),
+                    null, // 안쓰는 데이터는 null 혹은 0 으로 받음.
+                    null,
                     rs.getString("latitude"),
                     rs.getString("longitude"),
-                    rs.getString("status")
+                    rs.getString("status"),
+                    null,
+                    0
                 );
-
                 r_List.add(report);
             }
         }
@@ -42,7 +43,6 @@
         e.printStackTrace();
     }
 %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,31 +53,21 @@
 <!-- 스타일태그 분리 main.css-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/stylefile/main.css"> 
 </head>
-
 <body>
-
 <div class="page">
-
     <%@ include file="/header.jsp" %>
-
     <div class="main">
-
         <!-- 신고 목록 -->
         <div class="sidebar">
-
             <h2>신고된 목록</h2>
-
             <hr>
             <br>
-
             <%
                 if (r_List.isEmpty()) {
             %>
-
                 <div class="empty_message">
                     접수된 신고 내역이 없습니다.
                 </div>
-
             <%
                 } else {
                     // 위쪽에서 불러온 r_List을 이용해 아래 div class = "report"에 저장
@@ -86,9 +76,7 @@
                         String latitude = report.getLatitude();
                         String longitude = report.getLongitude();
                         String status = report.getStatus();
-
             %>
-
                 <div class="report"
                      data-lat="<%= latitude %>"
                      data-lng="<%= longitude %>"
@@ -96,10 +84,8 @@
                     <h4>
                         <%= title %>
                     </h4>
-
                     <p>
                         상태 :
-
                         <% if ("처리 완료".equals(status)) { %>
                             <span class="status_green">해결 완료</span>
                         <% } else { %>
@@ -108,22 +94,19 @@
                     </p>
 
                 </div>
-
             <%
                     }
                 }
             %>
-
         </div>
-
-        <!-- 오른쪽 지도 -->
+        <!--오른쪽 지도 부분 -->
         <div id="map" class="map_area"></div>
 
     </div>
 
 </div>
 
-<!-- 카카오 지도 및 마커 표시 -->
+<!--카카오 지도 및 마커 표시 -->
 <script>
 
     // 지도 초기화
@@ -143,6 +126,7 @@
     //data-lng=" longitude",
     //data-title=" title "를 reportCards에 저장함
     //아래에서 forEach를 돌려 마커를 생성하기 위한 위도 경도 제목을 저장함.
+    
     var reportCards = document.querySelectorAll('.report');
 
     reportCards.forEach(function(card) {
