@@ -119,8 +119,12 @@
 					session.setAttribute("loginFailTime", now.plusMinutes(10));
 				}
 				
+				
 				/** 로그인 페이지로 다시 이동 */
-				response.sendRedirect("./login.jsp");
+				out.print("<script>alert('로그인에 실패했습니다.');");
+				out.print("location.href = './login.jsp';");		
+				out.print("</script>");
+				//response.sendRedirect("./login.jsp");
 			}// else (로그인 실패)
 		%>
 
