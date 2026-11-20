@@ -18,11 +18,27 @@
 </style>
 <header class="header">
     <div class="nav-links">
-        <a href="./main.jsp">지도 보기</a>
+        <a href="./home_page.jsp">지도 보기</a>
         <a href="./list.jsp">신고 게시판</a>
         <a href="./write.jsp">쓰레기 신고하기</a>
     </div>
     <div class="logo">
-	    <div > 해안 쓰레기 실시간 지도, 신고 플랫폼 / [ <a href="./login.jsp">로그인</a> ]</div>
+	    <div > 해안 쓰레기 실시간 지도, 신고 플랫폼 /  
+	    <%
+	    Object loginName = session.getAttribute("name");
+
+	    if(loginName == null )
+	    {
+	    	out.print("<a href='./login.jsp'>로그인</a>");
+	    }
+	    else
+	    {
+	    	out.print(String.valueOf(loginName) + "님 환영합니다.  ");
+	    	out.print("[<a href='./logout.jsp'>로그아웃]</a>");
+	    }
+	    
+	    %>
+	     
+	     </div>
 	</div>
 </header>
