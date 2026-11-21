@@ -22,6 +22,8 @@
 			/** 입력한 id, passwd 가져오기 */
 			String id = request.getParameter("id");
 			String passwd = request.getParameter("passwd");
+			String name = null;
+			String role = null;
 			
 			/** DB 이용을 위한 준비 */
 			Connection conn = null;
@@ -49,6 +51,9 @@
 					/** 비밀번호도 일치하는지 확인 */
 					if(passwd.equals(rs.getString("password")))
 					{
+						/** 계정 정보를 변수에 저장 */
+						name = rs.getString("admin_name");
+						role = rs.getString("role");
 						/** 로그인 성공 플래그 true로 변경 */
 						logInSuccess = true;
 					}//if
@@ -87,9 +92,9 @@
 			if(logInSuccess)
 			{
 				/** 로그인 성공 시 세션에 유저 이름, id, 권한 저장 */
-				session.setAttribute("name", rs.getString("admin_name"));
+				session.setAttribute("name", name);
 				session.setAttribute("id", id);
-				session.setAttribute("role", rs.getString("role"));
+				session.setAttribute("role", role);
 				
 				/** 로그인 실패 횟수, 실패 시간 세션 삭제 */
 				session.removeAttribute("loginFailCount");
