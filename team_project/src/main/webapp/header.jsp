@@ -34,7 +34,7 @@
 	    else
 	    {
 	    	out.print(String.valueOf(loginName) + "님 환영합니다.  ");
-	    	out.print("[<a href='./logout.jsp'>로그아웃]</a>");
+	    	out.print("[<a href='./logout_process.jsp'>로그아웃]</a>");
 	    }
 	    
 	    %>
